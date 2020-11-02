@@ -1,0 +1,50 @@
+body{
+    background-color: rgb(228, 237, 245);
+}
+
+.navbar{
+    
+    background-color:rgb(26, 4, 105) ;  
+}
+
+.navbar .navbar-brand{
+    color: white ;  
+}
+
+.nav-item a{
+    color: white;
+}
+
+.head{
+    margin-top: 55px;
+    background-color: white;
+    
+}
+.head .nav-item a{
+    color:  rgb(26, 4, 105);
+}
+
+.head ul{
+    border-bottom: 1px solid black;
+}
+
+/* main page */
+#carousel{
+    margin-top: 100px;
+    width: 95%;
+    margin-left:35px;
+}
+
+/* footer */
+footer{
+    background-color:rgb(26, 4, 105) ;  
+    color: white;  
+}
+
+footer a{
+    color: white;
+}
+
+#copyright{
+    background-color: rgb(26, 28, 54);
+}

@@ -1,0 +1,13 @@
+body{
+    margin: 50px
+}
+
+#loginrow{
+    background-color: orange;
+    height: 100%;
+}
+
+#form{
+    background-color: white;
+    height: 500px
+}
