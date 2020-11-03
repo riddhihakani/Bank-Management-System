@@ -16,7 +16,7 @@
 
       </div>
       <div class="col-md-4 m-4" id="form">
-        <form class="m-3">
+        <form class="m-3" href="">
           <div class="form-group">
             <label for="exampleInputEmail1">Email address</label>
             <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">

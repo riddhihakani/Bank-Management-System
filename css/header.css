@@ -28,23 +28,4 @@ body{
     border-bottom: 1px solid black;
 }
 
-/* main page */
-#carousel{
-    margin-top: 100px;
-    width: 95%;
-    margin-left:35px;
-}
 
-/* footer */
-footer{
-    background-color:rgb(26, 4, 105) ;  
-    color: white;  
-}
-
-footer a{
-    color: white;
-}
-
-#copyright{
-    background-color: rgb(26, 28, 54);
-}
