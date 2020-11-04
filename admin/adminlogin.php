@@ -8,6 +8,9 @@
 
  $db = new Pdocon;
 
+ $db->query('SELECT * from branch');
+ $results = $db->fetchMultiple();
+
  if(isset($_POST['submit_login'])){
     
   $raw_email          =   cleandata($_POST['email']);
@@ -40,7 +43,7 @@
       
       
       'fullname'      =>   $row['fullname'],
-      'id'            =>   $row['id'],
+      'id'            =>   $row['admin_id'],
       'email'         =>   $row['email'],
       'image'         =>   $s_image
 
@@ -48,7 +51,7 @@
       
       $_SESSION['user_is_logged_in']  =  true;
       
-      redirect('admin/adminhome.php');
+      redirect('adminhome.php');
       
       
       keepmsg('<div class="alert alert-success text-center">
@@ -67,10 +70,7 @@
           </div>';
 
   }    
-  
-  
-  
-  
+    
 }
 
 if(isset($_POST['submit_register'])){
@@ -211,10 +211,9 @@ if(isset($_POST['submit_register'])){
              
                 <select type="" name="branch" class="form-control" id="branch" required>
                     <option value="">Select Branch</option>
-                    <option value="Mahavir Nagar,Kandivali(west)">Mahavir Nagar,Kandivali(west)</option>
-                    <option value="Charkop,Kandivali(west)">Charkop,Kandivali(west)</option>
-                    <option value="Borivali(West)">Borivali(West)</option>
-                    <option value="Andheri(West)">Andheri(West)</option>
+                    <?php foreach($results as $result): ?>
+                    <option value="<?php echo $result['Branch_id'] ?>"><?php echo $result['Address'] ?></option>
+                    <?php endforeach ; ?>
                 </select>
               
                 </div>

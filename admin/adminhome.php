@@ -8,16 +8,16 @@
     <!-- Bootstrap CSS -->
     <script src="https://kit.fontawesome.com/320685ab56.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-    <link rel="stylesheet" href="./css/employeehome.css">
-    <script src="./js/employeehome.js"></script>
+    <link rel="stylesheet" href="css/adminhome.css">
+    <script src="js/adminhome.js"></script>
     <title>Welcome to Greater Bank employee Portal</title>
   </head>
   <body>
    
       <div id="mySidenav" class="sidenav">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-        <a href="#"><h5>Add a client</h5></a>
-        <a href="#"><h5>Manage clients</h5></a>
+        <a href="add_employee.html"><h5>Add an Employee</h5></a>
+        <a href="#"><h5>Manage employees</h5></a>
         <a href="#"><h5>Permission Requests</h5></a>
         <a href="#"><h5>Grieviences</h5></a>
       </div>
