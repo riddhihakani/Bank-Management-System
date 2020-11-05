@@ -1,7 +1,20 @@
 <?php 
-//Open ob_start and session_start functions
     ob_start();
     session_start();
+    
+?>
+
+<?php 
+
+if(isset($_SESSION['user_is_logged_in'])){
+  
+  
+  $empid  = $_SESSION['user_data']['email'];
+    
+}else{
+    
+    header("Location: logout.php");
+}
 
 ?>
 
@@ -15,16 +28,17 @@
     <!-- Bootstrap CSS -->
     <script src="https://kit.fontawesome.com/320685ab56.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-    <title>Greater Bank - Branch Manager Portal</title>
+    <link rel="stylesheet" href="css/header.css">
+    <script src="js/header.js"></script>
+    <title>Welcome to Greater Bank employee Portal</title>
   </head>
   <body>
-  <link rel="stylesheet" href="css/nav.css">
-   <script src="js/nav.js"></script>
+   
       <div id="mySidenav" class="sidenav">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-        <a href="add_employee.php"><h5>Add an Employee</h5></a>
-        <a href="employee_list.php"><h5>Manage employees</h5></a>
-        <a href="#"><h5>Permission Requests</h5></a>
+        <a href="add_client.php"><h5>Add a client</h5></a>
+        <a href="client_list.php"><h5>Manage clients</h5></a>
+        <a href="create_acc.php"><h5>Permission Requests</h5></a>
         <a href="#"><h5>Grieviences</h5></a>
       </div>
       
@@ -53,7 +67,4 @@
               </ul>
             </div>
           </nav>
-      </div>    
-
-
-
+      </div>

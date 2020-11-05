@@ -1,3 +1,78 @@
+<?php 
+    ob_start();
+    session_start();
+    
+?>
+<?php 
+
+include('./admin/includes/function.php');
+include('./admin/includes/pdocon.php');
+
+ $db = new Pdocon;
+
+ if(isset($_POST['submit_login'])){
+    
+  $raw_email          =   cleandata($_POST['email']);
+  
+  $raw_password       =   cleandata($_POST['password']);
+  
+  
+  $c_email            =   valemail($raw_email);            
+  
+  $hashed_password    =   hashpassword($raw_password);
+    
+  
+  $db->query('SELECT * FROM customer WHERE email=:email AND password=:password');
+  
+  $db->bindValue(':email', $c_email, PDO::PARAM_STR);
+  $db->bindValue(':password',$hashed_password, PDO::PARAM_STR);
+  
+  $row = $db->fetchSingle();
+  
+  
+  if($row){
+      
+      $d_image        =   $row['image'];
+      
+      $d_name         =   $row['fullname'];
+      
+      $s_image        =   "<img src='uploaded_image/$d_image' class='profile_image' />"; 
+      
+      $_SESSION['user_data'] = array(
+      
+      
+      'fullname'      =>   $row['fname'] . " " . $row['lname'],
+      'id'            =>   $row['emp_id'],
+      'email'         =>   $row['email'],
+      'image'         =>   $s_image
+
+      );
+      
+      $_SESSION['user_is_logged_in']  =  true;
+      
+      redirect('index.php');
+      
+      
+      keepmsg('<div class="alert alert-success text-center">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    <strong>Welcome </strong>' . $d_name . ' You are logged in as Customer!
+              </div>');
+      
+      
+      
+      
+  }else{
+      
+       echo '<div class="alert alert-danger text-center">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>Sorry!</strong>Your account does not exist. Pleae contact the administration department.
+          </div>';
+
+  }    
+    
+}
+?>
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -16,22 +91,22 @@
 
       </div>
       <div class="col-md-4 m-4" id="form">
-        <form class="m-3" href="">
+        <form class="m-3" action="" method="post">
           <div class="form-group">
             <label for="exampleInputEmail1">Email address</label>
-            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+            <input type="email" class="form-control" id="exampleInputEmail1" name="email" aria-describedby="emailHelp">
+            <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
           </div>
           <div class="form-group">
             <label for="exampleInputPassword1">Password</label>
-            <input type="password" class="form-control" id="exampleInputPassword1">
+            <input type="password" class="form-control" name="password" id="exampleInputPassword1">
           </div>
-          <div class="form-group form-check">
+          <!-- <div class="form-group form-check">
             <input type="checkbox" class="form-check-input" id="exampleCheck1">
             <label class="form-check-label" for="exampleCheck1">Check me out</label>
-          </div>
-          <button type="submit" class="btn btn-primary">Submit</button>
-          <p class="mt-4">Don't have an account? <a href="">Sign Up</a></p>
+          </div> -->
+          <button type="submit" class="btn btn-primary" name="submit_login">Login</button>
+          <!-- <p class="mt-4">Don't have an account? <a href="">Sign Up</a></p> -->
         </form>   
       </div>
     </div>

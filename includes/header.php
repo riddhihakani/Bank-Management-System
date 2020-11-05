@@ -1,3 +1,24 @@
+<?php 
+    ob_start();
+    session_start();
+    
+?>
+
+<?php 
+
+if(isset($_SESSION['user_is_logged_in'])){
+  
+  $fullname  = $_SESSION['user_data']['fullname'];
+  $image     = $_SESSION['user_data']['image']; 
+
+    
+}else{
+    
+    //header("Location: logout.php");
+}
+
+?>
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -33,9 +54,25 @@
             <li class="nav-item mr-3">
               <a class="nav-link" href="#">Business</a>
             </li>
-            <li class="nav-item mr-3">
-                <a class="nav-link" href="#">Login</a>
+            <?php if(isset($_SESSION['user_is_logged_in'])){?>
+              <li class="nav-item dropdown" id="dropdown">
+                <a class="nav-link dropdown-toggle" id="dropbtn" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                 <?php echo $fullname ?>
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" id="dropdown-content">
+                  <a class="dropdown-item" href="#">Action</a>
+                  <a class="dropdown-item" href="#">Another action</a>
+                  <a class="dropdown-item" href="logout.php">Logout</a>
+                </div>
+              </li>
+            <?php }else{?>
+              <li class="nav-item mr-3">
+              <a class="nav-link" href="login.php">Login</a>
             </li>
+            
+            
+            <?php }?>
+            
           </ul>
         </div>
       </nav>

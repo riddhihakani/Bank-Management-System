@@ -1,3 +1,78 @@
+<?php 
+    ob_start();
+    session_start();
+    
+?>
+<?php 
+
+include('./../admin/includes/function.php');
+include('./../admin/includes/pdocon.php');
+
+ $db = new Pdocon;
+
+ if(isset($_POST['submit_login'])){
+    
+  $raw_email          =   cleandata($_POST['email']);
+  
+  $raw_password       =   cleandata($_POST['password']);
+  
+  
+  $c_email            =   valemail($raw_email);            
+  
+  $hashed_password    =   hashpassword($raw_password);
+    
+  
+  $db->query('SELECT * FROM employee WHERE email=:email AND password=:password');
+  
+  $db->bindValue(':email', $c_email, PDO::PARAM_STR);
+  $db->bindValue(':password',$hashed_password, PDO::PARAM_STR);
+  
+  $row = $db->fetchSingle();
+  
+  
+  if($row){
+      
+      $d_image        =   $row['image'];
+      
+      $d_name         =   $row['fullname'];
+      
+      $s_image        =   "<img src='uploaded_image/$d_image' class='profile_image' />"; 
+      
+      $_SESSION['user_data'] = array(
+      
+      
+      'fullname'      =>   $row['fname'] . " " . $row['lname'],
+      'id'            =>   $row['emp_id'],
+      'email'         =>   $row['email'],
+      'image'         =>   $s_image
+
+      );
+      
+      $_SESSION['user_is_logged_in']  =  true;
+      
+      redirect('employeehome.php');
+      
+      
+      keepmsg('<div class="alert alert-success text-center">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    <strong>Welcome </strong>' . $d_name . ' You are logged in as Employee
+              </div>');
+      
+      
+      
+      
+  }else{
+      
+       echo '<div class="alert alert-danger text-center">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>Sorry!</strong>Your account does not exist. Pleae contact the administration department.
+          </div>';
+
+  }    
+    
+}
+?>
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -16,52 +91,25 @@
     <div class="row mt-4" id="login">
             <div class="col-md-5">
             <h3 class="m-3">Login</h3>
-            <form class="m-3">
+            <form class="m-3" method="post" action="emplogin.php">
                 <div class="form-group">
-                    <label for="exampleInputEmail1">Employee ID</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                    <label for="exampleInputEmail1">Email</label>
+                    <input type="email" class="form-control" name="email" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
                 </div>
                 <div class="form-group">
                     <label for="exampleInputPassword1">Password</label>
-                    <input type="password" class="form-control" id="exampleInputPassword1">
+                    <input type="password" class="form-control" id="exampleInputPassword1" name="password">
                 </div>
-                <div class="form-group form-check">
+                <!-- <div class="form-group form-check">
                     <input type="checkbox" class="form-check-input" id="exampleCheck1">
                     <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
+                </div> -->
+                <button type="submit" class="btn btn-primary" name="submit_login">Submit</button>
                 
         </form>  
             </div>
-            <div class="col-md-1 mt-1">
-               <img src="assets/images/or.png">
-            </div>
-            <div class="col-md-6">
-            <h3 class="m-3">Sign Up</h3>
-            <form class="m-3">
-                <div class="form-group">
-                    <label for="exampleInputEmail1">Employee ID</label>
-                    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                    <small id="emailHelp" class="form-text text-muted">We will never share your card number with anyone.</small>
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputPassword1">Password</label>
-                    <input type="password" class="form-control" id="exampleInputPassword1">
-                </div>
-                <button type="button" class="btn btn-success btn-sm">Generate a system generated strong password </button>
-                <div class="form-group">
-                    <label for="exampleInputPassword1">Confirm Password</label>
-                    <input type="password" class="form-control" id="exampleInputPassword1">
-                </div>
-                <div class="form-group form-check">
-                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                    <label class="form-check-label" for="exampleCheck1">I am not a robot.</label>
-                </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
-              
-        </form>  
-        </div>
+           
     </div>
 </div>
 
