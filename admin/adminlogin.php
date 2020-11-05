@@ -2,10 +2,10 @@
 <?php 
     ob_start();
     session_start();
-    include('includes/function.php');
+   
 ?>
 <?php 
-
+include('includes/function.php');
  require('includes/pdocon.php');  
 
  $db = new Pdocon;
@@ -81,8 +81,7 @@ if(isset($_POST['submit_register'])){
   $raw_sex            =   cleandata($_POST['gender']);
   $raw_email          =   cleandata($_POST['email']);
   $raw_password       =   cleandata($_POST['password']);
-  $raw_branch         =   cleandata($_POST['branch']);
-  
+ 
   
   $c_name             =   sanitize($raw_name);
   $c_sex              =   sanitize($raw_sex);
@@ -119,14 +118,14 @@ if(isset($_POST['submit_register'])){
       
   }else{
       
-      $db->query("INSERT INTO admin(admin_id, fullname, email, password, gender, image, branch) VALUES(NULL, :fullname, :email, :password, :sex, :image, :branch) ");
+      $db->query("INSERT INTO admin(admin_id, fullname, email, password, gender, image) VALUES(NULL, :fullname, :email, :password, :sex, :image) ");
       
       $db->bindvalue(':fullname', $c_name, PDO::PARAM_STR);
       $db->bindvalue(':email', $c_email, PDO::PARAM_STR);
       $db->bindvalue(':password', $hashed_Pass, PDO::PARAM_STR);
       $db->bindvalue(':sex', $c_sex, PDO::PARAM_STR);
       $db->bindvalue(':image', $c_img, PDO::PARAM_STR);
-      $db->bindvalue(':branch', $c_branch, PDO::PARAM_STR);
+      
       
       $run = $db->execute();
       

@@ -2,6 +2,13 @@
 //Open ob_start and session_start functions
     ob_start();
     session_start();
+    if(isset($_SESSION['user_is_logged_in'])){
+    
+    
+    }else{
+        
+        header("Location: logout.php");
+    }
 
 ?>
 
@@ -41,8 +48,8 @@
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
               <ul class="navbar-nav ml-auto">
                 <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Dropdown link
+                  <a class="nav-link" href="logout.php">
+                    Logout
                   </a>
                   <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                     <a class="dropdown-item" href="#">Profile</a>

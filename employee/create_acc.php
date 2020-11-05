@@ -2,7 +2,7 @@
 
 <?php
 
-include('./../admin/includes/pdocon.php');
+require('./../admin/includes/pdocon.php');
 include('./../admin/includes/function.php');
 
 $db = new Pdocon;
@@ -16,6 +16,9 @@ $email = $_SESSION['user_data']['email'];
 // $listofcust->query('SELECT fname,lname FROM customer WHERE branch_no=:branchid ');
 
 if(isset($_POST['create_acc'])){
+
+    echo $_POST['empid'];
+    echo $_POST['custid'];
 
     $raw_accno          =   cleandata($_POST['accno']);
     $raw_acct           =   cleandata($_POST['acctype']);
@@ -36,9 +39,9 @@ if(isset($_POST['create_acc'])){
 
     
     
-    $db->query("SELECT * FROM accounts WHERE acc_type=:acctype");
+    $db->query("SELECT * FROM accounts WHERE acc_no=:accno");
     
-    $db->bindvalue(':acctype', $c_acct, PDO::PARAM_STR);
+    $db->bindvalue(':accno', $c_accno, PDO::PARAM_STR);
     
     $row = $db->fetchSingle();
     
@@ -52,17 +55,17 @@ if(isset($_POST['create_acc'])){
         
     }else{
         
-        $db->query("INSERT INTO accounts(acc_no, acc_type, emp_id, cust_id, balance) VALUES(:accno, :acctype, :balance, :empid, :custid) ");
-        
+        $db->query("INSERT INTO accounts(acc_no, acc_type, employee_id, cust_id, balance) VALUES(:accno, :acctype, :balance, :empid, :custid) ");
+        //echo "INSERT INTO accounts(acc_no, acc_type, employee_id, cust_id, balance) VALUES(:accno, :acctype, :balance, :empid, :custid) ";
         $db->bindvalue(':accno', $c_accno, PDO::PARAM_STR);
         $db->bindvalue(':acctype', $c_acct, PDO::PARAM_STR);
         $db->bindvalue(':balance', $c_accb, PDO::PARAM_INT);
         $db->bindvalue(':empid', $c_empid, PDO::PARAM_INT);
         $db->bindvalue(':custid', $c_custid, PDO::PARAM_INT);
       
-        
+      
         $run = $db->execute();
-        
+       
         if($run){
             
             echo '<div class="alert alert-success text-center">
@@ -104,7 +107,7 @@ if(isset($_POST['create_acc'])){
                 <input type="integer" class="form-control" id="accb" name="accbalance" placeholder="Account balance">
             </div>
         </div>
-        <div class="form-group col-md-4">
+        <div class="form-group col-md-8">
                 <select id="empid" name="empid" class="form-control">
                     <option selected>Choose your ID</option>
                     <?php 
@@ -116,7 +119,7 @@ if(isset($_POST['create_acc'])){
                     <?php endforeach ; ?>
                 </select>
         </div>
-        <div class="form-group col-md-4">
+        <div class="form-group col-md-8">
                 <select id="custid" name="custid" class="form-control">
                     <option selected>Choose customer ID</option>
                     <?php 

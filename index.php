@@ -70,11 +70,12 @@ include('./includes/header.php');
             </div>
             <div class="col-md-3">
               <h5>Offers for you</h5>
-              <ul class="list-group list-group-flush">
-                <li class="list-group-item "><i class="fas fa-plane fa-3x"></i>Cras justo odio</li>
-                <li class="list-group-item "><i class="fas fa-heartbeat fa-3x"></i>Dapibus ac facilisis in</li>
-                <li class="list-group-item"><i class="fas fa-piggy-bank fa-3x"></i>10% interest on your savings</li>
-                <li class="list-group-item"><i class="fab fa-cc-amazon-pay fa-3x"></i>10% interest on your savings</li>
+              <ul class="list-group list-group-flush justify-content-center">
+                <li class="list-group-item "><i class="fas fa-plane fa-2x"></i>Cras justo odio</li>
+                <li class="list-group-item "><i class="fas fa-heartbeat fa-2x"></i>Dapibus ac facilisis in</li>
+                <li class="list-group-item"><i class="fas fa-piggy-bank fa-2x"></i>10% interest on your savings</li>
+                <li class="list-group-item"><i class="fab fa-cc-amazon-pay fa-2x"></i>% interest on your savings</li>
+                <li class="list-group-item"><i class="fas fa-car-crash fa-2x"></i>% interest on your savings</li>
               </ul>
               <div class="card-footer">
                 <a href=""><h6>VIEW ALL</h6></a>
