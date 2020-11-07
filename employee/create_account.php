@@ -17,9 +17,6 @@ $email = $_SESSION['user_data']['email'];
 
 if(isset($_POST['create_acc'])){
 
-    echo $_POST['empid'];
-    echo $_POST['custid'];
-
     $raw_accno          =   cleandata($_POST['accno']);
     $raw_acct           =   cleandata($_POST['acctype']);
     $raw_accb           =   cleandata($_POST['accbalance']);
@@ -30,7 +27,7 @@ if(isset($_POST['create_acc'])){
     $c_accno             =   sanitize($raw_accno);
     $c_acct              =   sanitize($raw_acct);
     $c_accb              =   valint($raw_accb);
-    $c_empid             =   valint($raw_empid);
+    echo $c_empid             =   valint($raw_empid);
     $c_custid            =   valint($raw_custid);
 
     
@@ -55,7 +52,7 @@ if(isset($_POST['create_acc'])){
         
     }else{
         
-        $db->query("INSERT INTO accounts(acc_no, acc_type, employee_id, cust_id, balance) VALUES(:accno, :acctype, :balance, :empid, :custid) ");
+        $db->query("INSERT INTO accounts(acc_no, acc_type, employee_id, cust_id, balance) VALUES(:accno, :acctype,:empid, :custid,:balance) ");
         //echo "INSERT INTO accounts(acc_no, acc_type, employee_id, cust_id, balance) VALUES(:accno, :acctype, :balance, :empid, :custid) ";
         $db->bindvalue(':accno', $c_accno, PDO::PARAM_STR);
         $db->bindvalue(':acctype', $c_acct, PDO::PARAM_STR);
@@ -88,26 +85,27 @@ if(isset($_POST['create_acc'])){
   
 ?>
 
-<div class="container ">
-    <div id="main" class="row">
+<div class="container mt-4 " style="border: 2px solid black;">
+    <div class="row justify-content-center m-2 ">
         <h3>Create an account</h3>
     </div>
-    <div class="row justify-content-center">
-    <form method="post" action="create_acc.php" enctype="multipart/form-data">
+    <br>
+    <div class="row justify-content-center mb-3">
+    <form method="post" action="create_account.php" enctype="multipart/form-data">
         <div class="form-group">
             <input type="text" class="form-control" id="accno" name="accno" placeholder="Account Number">
         </div>
         <div class="form-row">
-            <div class="form-group col-md-8">
+            <div class="form-group ">
                 <input type="text" class="form-control" id="acctype" name="acctype" placeholder="Account type">
             </div>
         </div>
         <div class="form-row">
-            <div class="form-group col-md-8">
+            <div class="form-group ">
                 <input type="integer" class="form-control" id="accb" name="accbalance" placeholder="Account balance">
             </div>
         </div>
-        <div class="form-group col-md-8">
+        <div class="form-group ">
                 <select id="empid" name="empid" class="form-control">
                     <option selected>Choose your ID</option>
                     <?php 
@@ -119,7 +117,7 @@ if(isset($_POST['create_acc'])){
                     <?php endforeach ; ?>
                 </select>
         </div>
-        <div class="form-group col-md-8">
+        <div class="form-group">
                 <select id="custid" name="custid" class="form-control">
                     <option selected>Choose customer ID</option>
                     <?php 
@@ -136,4 +134,3 @@ if(isset($_POST['create_acc'])){
         </form>
     </div>
 </div>   
-

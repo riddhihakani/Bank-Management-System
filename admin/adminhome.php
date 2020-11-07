@@ -26,67 +26,62 @@ $db->bindValue(':email', $email, PDO::PARAM_STR);
 $row = $db->fetchSingle();
 
 ?>
-   
+<link rel="stylesheet" href="css/adminhome.css"> 
+<?php showmsg(); ?>
+<div class="container mt-4">
+<div class="row justify-content-center mt-5" >
 
-<div class="row justify-content-center">
-  <?php showmsg(); ?>
-  <div class="col-md-9">
+  <div class="col-md-6" >
   <?php  if($row) { ?>
           <br>
-           <form class="form-horizontal" role="form" method="post" action="">
-            <div class="form-group">
-            <label class="control-label col-sm-2" for="name" style="border:1px solid green;">Fullname:</label>
-            <div class="col-sm-10">
-              <input type="name" name="name" class="form-control" id="name" value="<?php echo $row['fullname'] ?>" required>
-            </div>
+          <form class="form-horizontal" role="form" method="post" action="">
+          <div class="form-group">
+            <label class="control-label " for="name">Fullname:</label>
+            <input type="name" name="name" class="form-control" id="name" value="<?php echo $row['fullname'] ?>" required>   
           </div>
           <div class="form-group">
-            <label class="control-label col-sm-2" for="email" style="border:1px solid green">Email:</label>
-            <div class="col-sm-10">
-              <input type="email" name="email" class="form-control" id="email" value="<?php echo $row['email'] ?>" required>
-            </div>
+            <label class="control-label " for="email">Email:</label>
+            <input type="email" name="email" class="form-control" id="email" value="<?php echo $row['email'] ?>" required>
           </div>
           <div class="form-group ">
-            <label class="control-label col-sm-2" for="pwd" style="border:1px solid green">Password:</label>
-            <div class="col-sm-10">
+            <label class="control-label" for="pwd">Password:</label>
              <fieldset disabled> 
               <input type="password" name="password" class="form-control disabled" id="pwd" value="<?php echo $row['password'] ?>" required>
              </fieldset> 
-            </div>
           </div>
-
          <br>
-          <div class="form-group"> 
+          <div class="form-row"> 
             <div class="col-sm-offset-2 col-sm-10">
                 <a class="btn btn-primary" href="edit_admin.php?admin_id=<?php echo $row['admin_id'] ?>">Edit</a>
                 <button type="submit" class="btn btn-danger pull-right" name="delete_form">Delete</button>
             </div>
           </div>
-          
-          
-          
         </form>
-          
-  </div>
-       <div class="col-md-3">
-           <div style="padding: 10px;">
-             <div class="thumbnail" >
-              <a href="edit_admin.php?admin_id=<?php echo $row['admin_id'] ?>">
-               
-                   <?php  $image = $row['image']; ?>
-               
-                <?php echo ' <img src="uploaded_image/' . $image . '"  style="width:150px;height:150px">'; ?> 
-              </a>
-              <h4 class="text-center"><?php //echo fullname of admin  ?></4>
-            </div>
-           </div>
+      </div>
+       <div class="col-md-5" style="border-left: 2px solid gray;">
+          <div class="card ml-3" style="width: 25rem;">
+          <?php  $image = $row['image']; ?>
+            <?php echo  '<img src="uploaded_image/' . $image . '" class="card-img-top" alt="..." style="padding:6px; height:15rem;">'; ?>
+              <div class="card-body">
+                <h5 class="card-title"><?php echo $row['fullname'] ?></h5>
+                <p class="card-text">Admin ID: <?php echo $row['admin_id'] ?></p>
+                <?php 
+                
+                    $bid = $row['br_no'];
+                    $db->query('SELECT address FROM branch WHERE branch_id=:bid');
+                    $db->bindvalue(':bid',$bid,PDO::PARAM_INT);
+                    $result = $db->fetchSingle();
+                ?>
+                 <p class="card-text">Branch: <?php echo $result['address'] ?></p>
+              </div>
+          </div>
        </div>
-       
        <?php } ?>
        
   </div>  
-
 </div>
+
+
 
 <?php 
   
@@ -140,14 +135,6 @@ if(isset($_POST['delete_form'])){
        
    }     
 ?>
-
-         
-         
-          
-
-</div>
- 
-</div>
   
 
 <?php include('includes/footer.php'); ?>

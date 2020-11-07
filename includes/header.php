@@ -45,33 +45,58 @@ if(isset($_SESSION['user_is_logged_in'])){
               <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
               <button class="btn btn-outline-light my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
             </form>
-            <li class="nav-item active mr-3">
-              <a class="nav-link" href="#">Personal<span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item mr-3">
-              <a class="nav-link" href="#">NRI</a>
-            </li>
-            <li class="nav-item mr-3">
-              <a class="nav-link" href="#">Business</a>
-            </li>
             <?php if(isset($_SESSION['user_is_logged_in'])){?>
-              <li class="nav-item mr-3">
-               
-              <a class="nav-link" href="#"><?php echo $fullname ?>
-                </a>
-              </li>
-            <?php }else{?>
-              <li class="nav-item mr-3">
-              <a class="nav-link" href="login.php">Login</a>
+                    
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Transactions
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" id="drop">
+                <a class="dropdown-item" href="transactions.php">Transfer Money</a>
+                <a class="dropdown-item" href="#">Withdraw Money</a>
+                <a class="dropdown-item" href="#">Deposit Money</a>
+              </div>
+          </li>
+          <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Accounts
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" id="drop">
+                <a class="dropdown-item" href="#">Insurance</a>
+                <a class="dropdown-item" href="#">Savings and Current</a>
+              
+              </div>
             </li>
-            
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <?php echo $fullname ?>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" id="drop">
+                <a class="dropdown-item" href="#">My Profile</a>
+                <a class="dropdown-item" href="logout.php">Logout</a>   
+              </div>
+            </li>
+                  <?php }else{?>
+                  <li class="nav-item active mr-3">
+                    <a class="nav-link" href="#">Personal<span class="sr-only">(current)</span></a>
+                  </li>
+                  <li class="nav-item mr-3">
+                    <a class="nav-link" href="#">NRI</a>
+                  </li>
+                  <li class="nav-item mr-3">
+                    <a class="nav-link" href="#">Business</a>
+                  </li>
+                    <li class="nav-item mr-3">
+                    <a class="nav-link" href="login.php">Login</a>
+                  </li>
+                  
             
             <?php }?>
             
           </ul>
         </div>
       </nav>
-      <div class="head fixed-top">
+      <!-- <div class="head fixed-top">
         <ul class="nav justify-content-center">
           <li class="nav-item">
             <a class="nav-link active mt-1 " href="#"><h6>Home</h6></a>
@@ -96,3 +121,4 @@ if(isset($_SESSION['user_is_logged_in'])){
           </li>
         </ul>
       </div>
+      -->

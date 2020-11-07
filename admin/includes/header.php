@@ -1,10 +1,21 @@
 <?php 
 //Open ob_start and session_start functions
+  // include('pdocon.php');
+ 
+
     ob_start();
     session_start();
     if(isset($_SESSION['user_is_logged_in'])){
-    
-    
+      // $db = new Pdocon;
+      // $db->query("SELECT fullname FROM admin WHERE email=:email");
+
+      // $email  =   $_SESSION['user_data']['email'];
+      
+      // $db->bindValue(':email', $email, PDO::PARAM_STR);
+          
+      // //Fetch all data and keep in a result set
+      // $row = $db->fetchSingle();
+
     }else{
         
         header("Location: logout.php");
@@ -23,10 +34,11 @@
     <script src="https://kit.fontawesome.com/320685ab56.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
     <title>Greater Bank - Branch Manager Portal</title>
+    <link rel="stylesheet" href="css/nav.css">
+   <script src="js/nav.js"></script>
   </head>
   <body>
-  <link rel="stylesheet" href="css/nav.css">
-   <script src="js/nav.js"></script>
+
       <div id="mySidenav" class="sidenav">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
         <a href="add_employee.php"><h5>Add an Employee</h5></a>
@@ -47,20 +59,21 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
               <ul class="navbar-nav ml-auto">
+              <li class="nav-item dropdown">
+                  <a class="nav-link" href="adminhome.php">
+                    My profile
+                    <?php //echo $row['fullname'] ?>
+                  </a>
+              </li>
                 <li class="nav-item dropdown">
                   <a class="nav-link" href="logout.php">
                     Logout
                   </a>
-                  <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="#">Profile</a>
-                    <a class="dropdown-item" href="#">My Schedule</a>
-                    <a class="dropdown-item" href="#">Attendance</a>
-                  </div>
                 </li>
               </ul>
             </div>
           </nav>
-      </div>    
+        
 
 
 

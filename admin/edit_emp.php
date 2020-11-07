@@ -1,15 +1,8 @@
-<?php include('includes/header.php'); ?>
-
-<?php
-
-//Include functions
-include('includes/function.php');
-
-?>
 
 <?php 
-/************** Fetching data from database using id ******************/
 
+include('includes/header.php');
+    include('includes/function.php');
     if(isset($_GET['emp_id'])){
 
         $user_id   =   $_GET['emp_id'];
@@ -31,56 +24,47 @@ include('includes/function.php');
 ?>
 
 
-
-  <div class="well">
-   
-  <small class="pull-right"><a href="customers.php"> View Customers</a> </small>
- 
-<?php 
-    
-    echo '<small class="pull-left" style="color:#337ab7;">' . $_SESSION['user_data']['fullname'] . ' | Editing Customer</small>';
-
-?>
-    
-    <h2 class="text-center">My Customers</h2> <hr>
-    <br>
-   </div> <hr>
-   
-
-    
-   <div class="rows">
-    <?php showmsg(); ?>
-     <div class="col-md-6 col-md-offset-3">
-          <?php  if($row) : ?>
+<?php showmsg(); ?>
+<div class="jumbotron mt-3">
+   <?php  if($row) : ?>
+  <h2><?php echo $row['fname'] . ' ' . $row['lname'] ?></h2>
+  <hr>
+   <div class="rows justify-content-left">
           <br>
            <form class="form-horizontal" role="form" method="post" action="edit_emp.php?emp_id=<?php echo $user_id ?>">
-            <div class="form-group">
-            <label class="control-label col-sm-2" for="name" style="color:#f3f3f3;">Fullname:</label>
-            <div class="col-sm-10">
-              <input type="name" name="fname" class="form-control" id="name" value="<?php echo $row['fname'] ?>" required>
-            </div>
+           <div class="form-row"> 
+              <div class="form-group col-md-6">
+                  <label class="control-label" for="name">First Name:</label>
+                  <input type="text" name="fname" class="form-control" id="name" value="<?php echo $row['fname'] ?>" required>
+                </div>
+                <div class="form-group col-md-6">
+                  <label class="control-label" for="name">Salary:</label>
+                  <input type="integer" name="salary" class="form-control" id="salary" value="<?php echo $row['salary'] ?>" required>
+                </div>
           </div>
-            <!-- <div class="form-group">
-            <label class="control-label col-sm-2" for="country" style="color:#f3f3f3;">Amount:</label>
-            <div class="col-sm-10">
-              <input type="country" name="amount" class="form-control" id="country" value="<?php //echo $row['spending'] ?>" required>
-            </div>
-          </div> -->
-          <div class="form-group">
-            <label class="control-label col-sm-2" for="email" style="color:#f3f3f3;">Email:</label>
-            <div class="col-sm-10">
-              <input type="email" name="email" class="form-control" id="email" value="<?php echo $row['email'] ?>" required>
-            </div>
+          <div class="form-row"> 
+              <div class="form-group col-md-6">
+                  <label class="control-label" for="name">Middle Name:</label>
+                  <input type="text" name="mname" class="form-control" id="name" value="<?php echo $row['mname'] ?>" required>
+              </div>
+              <div class="form-group col-md-6">
+                <label class="control-label" for="email">Email:</label>
+                <input type="email" name="email" class="form-control" id="email" value="<?php echo $row['email'] ?>" required>
+              </div>
           </div>
-          <div class="form-group ">
-            <label class="control-label col-sm-2" for="pwd" style="color:#f3f3f3;">Password:</label>
-            <div class="col-sm-10">
-             <fieldset disabled> 
-              <input type="password" name="password" class="form-control disabled" id="pwd" placeholder="Cannot Change Password" value="<?php echo $row['password'] ?>" required>
-             </fieldset> 
-            </div>
+          <div class="form-row"> 
+              <div class="form-group col-md-6">
+                  <label class="control-label" for="name">Last Name:</label>
+                  <input type="text" name="lname" class="form-control" id="name" value="<?php echo $row['lname'] ?>" required>
+              </div>
+              <div class="form-group ">
+                <label class="control-label" for="pwd">Password:</label>
+                <fieldset disabled> 
+                  <input type="password" name="password" class="form-control disabled" id="pwd" placeholder="Cannot Change Password" value="<?php echo $row['password'] ?>" required>
+                </fieldset> 
+              </div>
           </div>
-
+          
           <div class="form-group"> 
             <div class="col-sm-offset-2 col-sm-10">
               <input type="submit" class="btn btn-primary" name="update_customer" value="Update">
@@ -92,28 +76,34 @@ include('includes/function.php');
           
         </form>
           
-  </div>
-</div>  
+  </div> 
 
 <?php 
 /************** Update data to database using id ******************/  
 if(isset($_POST['update_customer'])){
     
     $raw_fname           =   cleandata($_POST['fname']);
-    // $raw_amount         =   cleandata($_POST['amount']);
+    $raw_mname           =   cleandata($_POST['mname']);
+    $raw_lname           =   cleandata($_POST['lname']);
+    $raw_salary           =   cleandata($_POST['salary']);
     $raw_email          =   cleandata($_POST['email']);
   
     
     $c_fname             =   sanitize($raw_fname);
-    // $c_amount           =   valint($raw_amount);
+    $c_mname             =   sanitize($raw_mname);
+    $c_lname             =   sanitize($raw_lname);
+    $c_salary             =   sanitize($raw_salary);
     $c_email            =   valemail($raw_email);
     
     
-    $db->query('UPDATE employee SET fname=:fname, email=:email WHERE emp_id=:id');
+    $db->query('UPDATE employee SET fname=:fname, lname=:lname, mname=:mname, salary=:salary, email=:email WHERE emp_id=:id');
     
     $db->bindValue(':id',$user_id , PDO::PARAM_INT);
     $db->bindValue(':fname',$c_fname , PDO::PARAM_STR);
     $db->bindValue(':email',$c_email , PDO::PARAM_STR);
+    $db->bindValue(':lname',$c_lname , PDO::PARAM_STR);
+    $db->bindValue(':mname',$c_mname , PDO::PARAM_STR);
+    $db->bindValue(':salary',$c_salary , PDO::PARAM_INT);
     // $db->bindValue(':amount',$c_amount , PDO::PARAM_INT);
     
     

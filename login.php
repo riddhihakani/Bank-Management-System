@@ -34,7 +34,7 @@ include('./admin/includes/pdocon.php');
       
       $d_image        =   $row['image'];
       
-      $d_name         =   $row['fullname'];
+      $d_name         =   $row['fname'] . ' ' . $row['lname'];
       
       $s_image        =   "<img src='uploaded_image/$d_image' class='profile_image' />"; 
       
@@ -42,7 +42,7 @@ include('./admin/includes/pdocon.php');
       
       
       'fullname'      =>   $row['fname'] . " " . $row['lname'],
-      'id'            =>   $row['emp_id'],
+      'id'            =>   $row['customer_id'],
       'email'         =>   $row['email'],
       'image'         =>   $s_image
 

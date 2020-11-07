@@ -19,12 +19,14 @@ if(isset($_POST['submit_register'])){
     $raw_post           =   cleandata($_POST['post']);
     $raw_password       =   cleandata($_POST['password']);
     $raw_branch         =   cleandata($_POST['branch']);
+    $raw_dept           =   cleandata($_POST['department']);
     $raw_address        =   cleandata($_POST['address']);
     $raw_phone          =   cleandata($_POST['phone']);
     $raw_id             =   cleandata($_POST['id']);
     
     $c_fname             =   sanitize($raw_fname);
     $c_lname             =   sanitize($raw_lname);
+    $c_dept              =   sanitize($raw_dept);
     $c_mname             =   sanitize($raw_mname);
     $c_gender            =   sanitize($raw_gender);
     $c_email             =   valemail($raw_email);
@@ -64,7 +66,7 @@ if(isset($_POST['submit_register'])){
         
     }else{
         
-        $db->query("INSERT INTO employee(emp_id, fname, mname, lname, email, post, salary, password, gender, image, branch_no, phone, address) VALUES(:id, :fname, :mname, :lname, :email, :post, :salary, :password, :gender, :image, :branch, :phone, :address) ");
+        $db->query("INSERT INTO employee(emp_id, fname, mname, lname, email, post, salary, password, gender, image, branch_no, phone, dept, address) VALUES(:id, :fname, :mname, :lname, :email, :post, :salary, :password, :gender, :image, :branch, :phone, :dept, :address) ");
         
         $db->bindvalue(':id', $c_id, PDO::PARAM_INT);
         $db->bindvalue(':fname', $c_fname, PDO::PARAM_STR);
@@ -79,6 +81,7 @@ if(isset($_POST['submit_register'])){
         $db->bindvalue(':gender', $c_gender, PDO::PARAM_STR);
         $db->bindvalue(':image', $c_img, PDO::PARAM_STR);
         $db->bindvalue(':branch', $c_branch, PDO::PARAM_INT);
+        $db->bindvalue(':dept', $c_dept, PDO::PARAM_STR);
         
         $run = $db->execute();
         
@@ -105,11 +108,11 @@ if(isset($_POST['submit_register'])){
 ?>
 
 <div class="container ">
-    <div id="main" class="row">
+    <div id="main" class="row justify-content-center mt-3" style="border: 2px solid black;">
         <h3>Add an Employee</h3>
     </div>
-    <div class="row justify-content-center">
-    <form method="post" action="add_employee.php" enctype="multipart/form-data">
+    <div class="row justify-content-center mt-3" style="border: 2px solid black;">
+    <form method="post" class="mt-3 mb-2" action="add_employee.php" enctype="multipart/form-data">
         <div class="form-group">
             <input type="number" class="form-control" id="empid" name="id" placeholder="Employee Id">
         </div>
@@ -135,6 +138,14 @@ if(isset($_POST['submit_register'])){
         <div class="form-group">
             <input type="text" class="form-control" id="inputAddress" name="address" placeholder="Address">
         </div>
+        <div class="form-group">
+                <select id="dept" name="department" class="form-control">
+                    <option value="" selected>Choose department</option>
+                    <option value="Accounts">Accounts</option>
+                    <option value="Insurance">Insurance</option>
+                    <option value="Loan">Loan</option>
+                </select>
+            </div>
         <div class="form-row">
             <div class="form-group col-md-4">           
                 <input type="text" class="form-control" id="phone" name="phone" placeholder="Phone number">

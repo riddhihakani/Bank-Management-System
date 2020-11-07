@@ -5,11 +5,12 @@ include('includes/function.php');
 
 
 ?>
-   
-<div class="row">
-      <div class="col-md-4 col-md-offset-4">
-      </div>
-      <div class="col-md-4 col-md-offset-4">
+
+<div class="container mt-4" style="border:2px solid black">
+<div class="row justify-content-center col-md-8">
+           
+           <br>
+           <hr>
            <form class="form-horizontal" role="form" method="post" action="<?php $_SERVER["PHP_SELF"]; ?>" enctype="multipart/form-data">
            
            <?php 
@@ -36,29 +37,21 @@ include('includes/function.php');
             <?php if($row) : ?>     
                 
             <div class="form-group">
-            <label class="control-label col-sm-2" for="name"></label>
-            <div class="col-sm-10">
+            <label class="control-label" for="name"></label>
               <input type="name" name="name" class="form-control" id="name" value="<?php echo $row['fullname'] ?>" required>
             </div>
-          </div>
           
           <div class="form-group">
-            <label class="control-label col-sm-2" for="email"></label>
-            <div class="col-sm-10">
-              <input type="email" name="email" class="form-control" id="email" value="<?php echo $row['email'] ?>" required>
-            </div>
+            <label class="control-label" for="email"></label>
+            <input type="email" name="email" class="form-control" id="email" value="<?php echo $row['email'] ?>" required>
           </div>
           <div class="form-group">
-            <label class="control-label col-sm-2" for="pwd"></label>
-            <div class="col-sm-10"> 
-              <input type="password" name="password" class="form-control" id="pwd" placeholder="Confirm Password" value="" required>
-            </div>
+            <label class="control-label" for="pwd"></label>
+            <input type="password" name="password" class="form-control" id="pwd" placeholder="Confirm Password" value="" required>
           </div>
           <div class="form-group">
-            <label class="control-label col-sm-2" for="image"></label>
-            <div class="col-sm-10">
-              <input type="file" name="image" id="image" placeholder="Choose Image" required>
-            </div>
+            <label class="control-label" for="image"></label>
+            <input type="file" name="image" id="image" placeholder="Choose Image" required>
           </div>
 
           <div class="form-group"> 
@@ -146,8 +139,6 @@ if(isset($_POST['submit_update'])){
           
   </div>
 </div>
-          
-  </div>
 </div>
-  
+    
 <?php include('includes/footer.php'); ?>  

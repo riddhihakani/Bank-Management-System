@@ -1,11 +1,6 @@
 <?php 
     ob_start();
     session_start();
-    
-?>
-
-<?php 
-
 if(isset($_SESSION['user_is_logged_in'])){
   
   
@@ -38,7 +33,7 @@ if(isset($_SESSION['user_is_logged_in'])){
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
         <a href="add_client.php"><h5>Add a client</h5></a>
         <a href="client_list.php"><h5>Manage clients</h5></a>
-        <a href="create_acc.php"><h5>Permission Requests</h5></a>
+        <a href="create_account.php"><h5>Create Account</h5></a>
         <a href="#"><h5>Grieviences</h5></a>
       </div>
       
@@ -54,17 +49,17 @@ if(isset($_SESSION['user_is_logged_in'])){
             </button>
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
               <ul class="navbar-nav ml-auto">
-                <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Dropdown link
+              <li class="nav-item ">
+                  <a class="nav-link " href="employeehome.php">
+                    My Profile
                   </a>
-                  <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="#">Profile</a>
-                    <a class="dropdown-item" href="#">My Schedule</a>
-                    <a class="dropdown-item" href="#">Attendance</a>
-                  </div>
+                </li>
+                <li class="nav-item ">
+                  <a class="nav-link " href="logout.php">
+                    Logout
+                  </a>
                 </li>
               </ul>
             </div>
           </nav>
-      </div>
+      

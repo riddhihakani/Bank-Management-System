@@ -17,18 +17,10 @@ $results = $db->fetchMultiple();
 
 
 ?>
-
-<div class="container">
-
 <?php showmsg(); ?>
-
+<div class="container mt-3">
 <div class="jumbotron">
-
-<small class="pull-right"><a href="add_employee.php"> Add Customer </a> </small>
-
-<?php //echo $_SESSION['user_data']['fullname'] ?> | Admin
- 
- <h2 class="text-center">Employee List</h2> <hr>
+ <h2 class="text-center">Client List</h2> <hr>
  <br>
   <table class="table table-bordered table-hover text-center">
      <thead >

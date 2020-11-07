@@ -1,25 +1,20 @@
-body{
-    background-color: rgb(219, 219, 219);
-}
-
+/*body{
+ background-color: rgb(219, 219, 219);
+}*/
 .navbar{
     
     background-color:rgb(26, 4, 105) ;  
-}
+} 
 
 .navbar .navbar-brand{
     color: white ;  
-}
-
-.nav-item a{
-    color: white;
 }
 
 
 .head{
     margin-top: 55px;
     background-color: white;
-   
+    z-index: -1;
     
 }
 .head .nav-item a{
