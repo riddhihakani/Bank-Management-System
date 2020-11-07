@@ -4,7 +4,8 @@
 if(isset($_SESSION['user_is_logged_in'])){
   
   
-  $empid  = $_SESSION['user_data']['email'];
+  $empid  = $_SESSION['user_data']['id'];
+  $post = $_SESSION['user_data']['post'];
     
 }else{
     
@@ -34,7 +35,10 @@ if(isset($_SESSION['user_is_logged_in'])){
         <a href="add_client.php"><h5>Add a client</h5></a>
         <a href="client_list.php"><h5>Manage clients</h5></a>
         <a href="create_account.php"><h5>Create Account</h5></a>
-        <a href="#"><h5>Grieviences</h5></a>
+        <?php if($post == 'Branch Manager'){?>
+        <a href="my_emp.php?emp_id=<?php echo $empid ?>"><h5>My employees</h5></a>
+        <?php } ?>
+        <a href="client_analysis.php?emp_id=<?php echo $empid ?>"><h5>Client Analysis</h5></a>
       </div>
       
       <!-- Use any element to open the sidenav -->

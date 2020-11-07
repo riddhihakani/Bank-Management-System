@@ -44,6 +44,7 @@ include('./../admin/includes/pdocon.php');
       'fullname'      =>   $row['fname'] . " " . $row['lname'],
       'id'            =>   $row['emp_id'],
       'email'         =>   $row['email'],
+      'post'          =>   $row['post'],
       'image'         =>   $s_image
 
       );

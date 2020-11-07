@@ -20,7 +20,7 @@ if(isset($_POST['transfer_amt'])){
     $raw_date          =   cleandata($_POST['datet']);
    
     $c_send             =   sanitize($raw_send);
-    $c_receive             =   sanitize($raw_receive);
+    $c_receive             =   sanitize($raw_recieve);
     $c_amount              =   valint($raw_amount);
     $c_datet              =   valint($raw_date);
 
@@ -40,7 +40,7 @@ if(isset($_POST['transfer_amt'])){
     $db->bindvalue(':sender',$c_send,PDO::PARAM_STR);
     $db->bindvalue(':receiver',$c_receive,PDO::PARAM_STR);
     $db->bindvalue(':amt',$c_amount,PDO::PARAM_INT);
-    $db->bindvalue(':datet',GETDATE(),PDO::PARAM_STR);
+    $db->bindvalue(':datet',date("Y-m-d"),PDO::PARAM_STR);
     $row = $db->execute();
 
 
@@ -51,8 +51,12 @@ if(isset($_POST['transfer_amt'])){
 
 ?>
 <link rel="stylesheet" href="css/transaction.css">
-<div class="container">
-    <div class="row">
+<div class="container ">
+    <div class="row justify-content-center mt-5" style="border: 2px solid black;">
+    <div class="col-md-7">
+
+    </div>
+    <div class="col-md-5">
     <form method="post" action="transactions.php"class="mt-3 mb-2">
             <div class="form-group">
                 <select id="accno" name="send_acc" class="form-control">
@@ -68,13 +72,15 @@ if(isset($_POST['transfer_amt'])){
             <div class="form-group">
                 <input type="number" class="form-control" id="amount" name="amount" placeholder="Amount you want to transfer">
             </div>
-            <div class="form-group">
-                <input type="date" class="form-control" id="date" name="datet" value="GETDATE()" placeholder="Date of Transfer">
-            </div>
+            <!-- <div class="form-group">
+                <input type="date" class="form-control" id="date" name="datet" placeholder="Date of Transfer">
+            </div> -->
        
         <button type="submit" class="btn btn-primary" name="transfer_amt">Transfer Amount</button>
         </form>
     
-    
+    </div>
     </div>
 </div>
+
+<?php include('includes/footer.php') ?>

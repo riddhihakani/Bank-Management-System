@@ -43,7 +43,7 @@
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
         <a href="add_employee.php"><h5>Add an Employee</h5></a>
         <a href="employee_list.php"><h5>Manage employees</h5></a>
-        <a href="#"><h5>Permission Requests</h5></a>
+        <a href="emp_analysis.php"><h5>Employee Analysis</h5></a>
         <a href="#"><h5>Grieviences</h5></a>
       </div>
       

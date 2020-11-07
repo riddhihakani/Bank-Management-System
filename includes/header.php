@@ -34,7 +34,7 @@ if(isset($_SESSION['user_is_logged_in'])){
   </head>
   <body>
     <nav class="navbar navbar-expand-lg fixed-top">
-        <a class="navbar-brand" href="#">Greater Bank</a>
+        <a class="navbar-brand" href="index.php">Greater Bank</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
