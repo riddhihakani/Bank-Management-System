@@ -1,30 +1,28 @@
 <?php
 include('includes/header.php');  
 //Include functions
-include('./../admin/includes/function.php');
-//echo $_SESSION['user_data']['email'];
+include('./admin/includes/function.php');
 /************** Fetching data from database using id ******************/
-
 //require database class files
-require('./../admin/includes/pdocon.php');
+require('./admin/includes/pdocon.php');
 
-
+if(isset($_GET['user_id'])){
+    $user_id = $_GET['user_id'];
+}
 //instatiating our database objects
 $db = new Pdocon;
 
 //Create a query to select all users to display in the table
    
-$db->query("SELECT * FROM employee WHERE email=:email");
+$db->query("SELECT * FROM customer WHERE customer_id=:user_id");
 
-$email  =   $_SESSION['user_data']['email'];
-
-$db->bindValue(':email', $email, PDO::PARAM_STR);
+$db->bindValue(':user_id', $user_id, PDO::PARAM_INT);
     
 //Fetch all data and keep in a result set
 $row = $db->fetchSingle();
 
 ?>
-<link rel="stylesheet" href="css/employeehome.css"> 
+<link rel="stylesheet" href="css/my_profile.css"> 
 <?php showmsg(); ?>
 <div class="container mt-4 shadow-lg p-3 mb-5 bg-white rounded" >
 <div class="row justify-content-center mt-5" >
@@ -50,7 +48,7 @@ $row = $db->fetchSingle();
          <br>
           <div class="form-row"> 
             <div class="col-sm-offset-2 col-sm-10">
-                <a class="btn btn-primary" href="edit_employee.php?emp_id=<?php echo $row['emp_id'] ?>">Edit</a>
+                <a class="btn btn-primary" href="edit_employee.php?emp_id=<?php echo $row['customer_id'] ?>">Edit</a>
                 <button type="submit" class="btn btn-danger pull-right" name="delete_form">Delete</button>
             </div>
           </div>
@@ -59,10 +57,10 @@ $row = $db->fetchSingle();
        <div class="col-md-5" style="border-left: 2px solid gray;">
           <div class="card ml-3" style="width: 25rem;">
           <?php  $image = $row['image']; ?>
-            <?php echo  '<img src="./../admin/uploaded_image/' . $image . '" class="card-img-top" alt="..." style="padding:6px; height:15rem;">'; ?>
+            <?php echo  '<img src="./employee/uploaded_image/' . $image . '" class="card-img-top" alt="..." style="padding:6px; height:15rem;">'; ?>
               <div class="card-body">
                 <h5 class="card-title"><?php echo $row['fname'] . ' ' . $row['lname'] ?></h5>
-                <p class="card-text">Employee ID: <?php echo $row['emp_id'] ?></p>
+                <p class="card-text">Customer ID: <?php echo $row['customer_id'] ?></p>
                 <?php 
                 
                     $bid = $row['branch_no'];
@@ -80,7 +78,7 @@ $row = $db->fetchSingle();
 </div>
 
 
-
+  </body>
 <?php 
   
 /************** Deleting data from database when delete button is clicked ******************/  
@@ -88,14 +86,14 @@ $row = $db->fetchSingle();
       
 if(isset($_POST['delete_form'])){
     
-    $admin_id = $_SESSION['user_data']['id'];
+    $customer_id = $_SESSION['user_data']['id'];
     
     keepmsg('<div class="alert alert-danger text-center">
               
               <strong>Confirm!</strong> Do you want to delete your account <br>
               <a href="#" class="btn btn-default" data-dismiss="alert" aria-label="close">No, Thanks</a><br>
               <form method="post" action="adminhome.php">
-              <input type="hidden" value="' . $admin_id .'" name="id"><br>
+              <input type="hidden" value="' . $customer_id .'" name="id"><br>
               <input type="submit" name="delete_admin" value="Yes, Delete" class="btn btn-danger">
               </form>
             </div>');
@@ -108,11 +106,11 @@ if(isset($_POST['delete_form'])){
 //If the Yes Delete (confim delete) button is click from the closable div proceed to delete
 
 
-   if(isset($_POST['delete_admin'])){
+   if(isset($_POST['delete_customer'])){
        
     $id = $_POST['id'];
            
-    $db->query('DELETE FROM admin WHERE admin_id=:id');
+    $db->query('DELETE FROM customer WHERE customer_id=:id');
        
     $db->bindValue(':id', $id, PDO::PARAM_INT);
        

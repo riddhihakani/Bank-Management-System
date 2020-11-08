@@ -81,8 +81,8 @@ if(isset($_POST['submit_register'])){
   $raw_sex            =   cleandata($_POST['gender']);
   $raw_email          =   cleandata($_POST['email']);
   $raw_password       =   cleandata($_POST['password']);
- 
-  
+  $raw_branch         =   cleandata($_POST['branch']);
+
   $c_name             =   sanitize($raw_name);
   $c_sex              =   sanitize($raw_sex);
   $c_email            =   valemail($raw_email);
@@ -118,13 +118,14 @@ if(isset($_POST['submit_register'])){
       
   }else{
       
-      $db->query("INSERT INTO admin(admin_id, fullname, email, password, gender, image) VALUES(NULL, :fullname, :email, :password, :sex, :image) ");
+      $db->query("INSERT INTO admin(admin_id, fullname, email, password, gender, image, br_no) VALUES(NULL, :fullname, :email, :password, :sex, :image, :br_no) ");
       
       $db->bindvalue(':fullname', $c_name, PDO::PARAM_STR);
       $db->bindvalue(':email', $c_email, PDO::PARAM_STR);
       $db->bindvalue(':password', $hashed_Pass, PDO::PARAM_STR);
       $db->bindvalue(':sex', $c_sex, PDO::PARAM_STR);
       $db->bindvalue(':image', $c_img, PDO::PARAM_STR);
+      $db->bindvalue(':br_no', $c_branch, PDO::PARAM_INT);
       
       
       $run = $db->execute();
@@ -215,6 +216,18 @@ if(isset($_POST['submit_register'])){
                 </select>
               
                 </div>
+                <div class="form-group">
+                <select id="branch" name="branch" class="form-control">
+                    <option selected>Choose branch</option>
+                    <?php 
+                        $db->query('SELECT * FROM branch');
+                        $results = $db->fetchMultiple();
+                    ?>
+                    <?php foreach($results as $result): ?>
+                    <option value="<?php echo $result['Branch_id'] ?>"><?php echo $result['Address']?></option>
+                    <?php endforeach ; ?>
+                </select>
+            </div>
 
                 <div class="form-group">
                   <label for="exampleFormControlFile1">Upload Photo</label>

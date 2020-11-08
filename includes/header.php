@@ -10,6 +10,7 @@ if(isset($_SESSION['user_is_logged_in'])){
   
   $fullname  = $_SESSION['user_data']['fullname'];
   $image     = $_SESSION['user_data']['image']; 
+  $id        = $_SESSION['user_data']['id'];
 
     
 }else{
@@ -53,8 +54,8 @@ if(isset($_SESSION['user_is_logged_in'])){
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" id="drop">
                 <a class="dropdown-item" href="transactions.php">Transfer Money</a>
-                <a class="dropdown-item" href="#">Withdraw Money</a>
-                <a class="dropdown-item" href="#">Deposit Money</a>
+                <a class="dropdown-item" href="withdraw.php">Withdraw Money</a>
+                <a class="dropdown-item" href="deposit.php">Deposit Money</a>
               </div>
           </li>
           <li class="nav-item dropdown">
@@ -63,7 +64,7 @@ if(isset($_SESSION['user_is_logged_in'])){
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" id="drop">
                 <a class="dropdown-item" href="#">Insurance</a>
-                <a class="dropdown-item" href="#">Savings and Current</a>
+                <a class="dropdown-item" href="savings_current.php">Savings and Current</a>
               
               </div>
             </li>
@@ -72,22 +73,22 @@ if(isset($_SESSION['user_is_logged_in'])){
               <?php echo $fullname ?>
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" id="drop">
-                <a class="dropdown-item" href="#">My Profile</a>
+                <a class="dropdown-item" href="my_profile.php?user_id=<?php echo $id ?>">My Profile</a>
                 <a class="dropdown-item" href="logout.php">Logout</a>   
               </div>
             </li>
                   <?php }else{?>
                   <li class="nav-item active mr-3">
-                    <a class="nav-link" href="#">Personal<span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="#" id="nonlogin">Personal<span class="sr-only">(current)</span></a>
                   </li>
                   <li class="nav-item mr-3">
-                    <a class="nav-link" href="#">NRI</a>
+                    <a class="nav-link" href="#" id="nonlogin">NRI</a>
                   </li>
                   <li class="nav-item mr-3">
-                    <a class="nav-link" href="#">Business</a>
+                    <a class="nav-link" href="#" id="nonlogin">Business</a>
                   </li>
                     <li class="nav-item mr-3">
-                    <a class="nav-link" href="login.php">Login</a>
+                    <a class="nav-link" href="login.php" id="nonlogin">Login</a>
                   </li>
                   
             

@@ -1,6 +1,4 @@
-body{
- background-color: rgb(192, 191, 191);
-}
+
 .navbar{
     
     background-color:rgb(26, 4, 105) ;  
@@ -10,6 +8,13 @@ body{
     color: white ;  
 }
 
+#navbarDropdownMenuLink{
+    color: white;
+}
+
+#nonlogin{
+    color: white;
+}
 
 .head{
     margin-top: 55px;

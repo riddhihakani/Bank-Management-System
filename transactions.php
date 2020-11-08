@@ -6,6 +6,7 @@ include('admin/includes/function.php');
 
 $db = new Pdocon;
 
+
 $id = $_SESSION['user_data']['id'];
 $db->query('SELECT * FROM accounts WHERE cust_id=:cust_id AND acc_type="current"');
 $db->bindvalue('cust_id', $id,PDO::PARAM_INT);
@@ -13,7 +14,9 @@ $db->bindvalue('cust_id', $id,PDO::PARAM_INT);
 $results = $db->fetchMultiple();
 
 if(isset($_POST['transfer_amt'])){
-    
+
+    //CREATE TRIGGER `accounts_backup` BEFORE UPDATE ON `accounts` FOR EACH ROW INSERT INTO accounts_backup(acc_no,balance) VALUES (NEW.acc_no,NEW.balance)
+
     $raw_send          =   cleandata($_POST['send_acc']);
     $raw_recieve         =   cleandata($_POST['ben_acc']);
     $raw_amount          =   cleandata($_POST['amount']);
@@ -24,9 +27,26 @@ if(isset($_POST['transfer_amt'])){
     $c_amount              =   valint($raw_amount);
     $c_datet              =   valint($raw_date);
 
+    $db->query('SELECT balance FROM accounts WHERE acc_no=:accno');
+    $db->bindvalue(':accno',$c_send,PDO::PARAM_STR);
+    $output = $db->fetchSingle();
+
+    if($c_amount<$output['balance']){
+
     $db->query('UPDATE accounts SET balance=balance+:amount WHERE acc_no=:recieve');
     $db->bindvalue(':amount',$c_amount,PDO::PARAM_INT);
     $db->bindvalue(':recieve',$c_receive,PDO::PARAM_STR);
+    $row = $db->execute();
+
+    if($row){
+        echo 'transfer successful';
+    }else{
+        echo 'Transfer unsuccessful';
+    }
+
+    $db->query('UPDATE accounts SET balance=balance-:amount WHERE acc_no=:send');
+    $db->bindvalue(':amount',$c_amount,PDO::PARAM_INT);
+    $db->bindvalue(':send',$c_send,PDO::PARAM_STR);
     $row = $db->execute();
 
     if($row){
@@ -42,7 +62,13 @@ if(isset($_POST['transfer_amt'])){
     $db->bindvalue(':amt',$c_amount,PDO::PARAM_INT);
     $db->bindvalue(':datet',date("Y-m-d"),PDO::PARAM_STR);
     $row = $db->execute();
+    
+    }else{
 
+        echo 'You do not have enough balance in your account';
+
+
+}
 
 
 
@@ -52,7 +78,7 @@ if(isset($_POST['transfer_amt'])){
 ?>
 <link rel="stylesheet" href="css/transaction.css">
 <div class="container ">
-    <div class="row justify-content-center mt-5" style="border: 2px solid black;">
+    <div class="row justify-content-center shadow-lg p-3 mb-5 bg-white rounded mt-5" style="border: 2px solid black;">
     <div class="col-md-7">
 
     </div>
@@ -82,5 +108,5 @@ if(isset($_POST['transfer_amt'])){
     </div>
     </div>
 </div>
-
+</body>
 <?php include('includes/footer.php') ?>

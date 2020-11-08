@@ -100,10 +100,10 @@ if(isset($_POST['submit_register'])){
 ?>
 
 <div class="container ">
-<div id="main" class="row justify-content-center mt-3" style="border: 2px solid black;">
+<div id="main" class="row justify-content-center mt-3 shadow-lg p-3 mb-5 bg-white rounded" style="border: 2px solid black;">
         <h3>Add a Client</h3>
     </div>
-    <div class="row justify-content-center mt-3" style="border: 2px solid black;">
+    <div class="row justify-content-center mt-3 shadow-lg p-3 mb-5 bg-white rounded" style="border: 2px solid black;">
     <form method="post" action="add_client.php"class="mt-3 mb-2" enctype="multipart/form-data">
         <div class="form-group">
             <input type="number" class="form-control" id="empid" name="id" placeholder="Client Id">

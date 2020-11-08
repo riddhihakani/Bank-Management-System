@@ -27,7 +27,7 @@ if(isset($_POST['create_acc'])){
     $c_accno             =   sanitize($raw_accno);
     $c_acct              =   sanitize($raw_acct);
     $c_accb              =   valint($raw_accb);
-    echo $c_empid             =   valint($raw_empid);
+    $c_empid             =   valint($raw_empid);
     $c_custid            =   valint($raw_custid);
 
     
@@ -85,7 +85,7 @@ if(isset($_POST['create_acc'])){
   
 ?>
 
-<div class="container mt-4 " style="border: 2px solid black;">
+<div class="container mt-4 shadow-lg p-3 mb-5 bg-white rounded " style="border: 2px solid black;">
     <div class="row justify-content-center m-2 ">
         <h3>Create an account</h3>
     </div>
@@ -97,7 +97,13 @@ if(isset($_POST['create_acc'])){
         </div>
         <div class="form-row">
             <div class="form-group ">
-                <input type="text" class="form-control" id="acctype" name="acctype" placeholder="Account type">
+              
+                <select id="acctype" name="acctype" class="form-control">
+                    <option selected>Select Account Type</option>
+                    <option value="Savings">savings</option>
+                    <option value="current">current</option>
+                    
+                </select>
             </div>
         </div>
         <div class="form-row">

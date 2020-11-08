@@ -1,6 +1,5 @@
-<head>
-   <link rel="stylesheet" href="css/footer.css">
-</head>
+
+<link rel="stylesheet" href="css/footer.css">
 <footer class="page-footer font-small indigo mt-5">
   <div class="container text-center text-md-left">
     <div class="row">

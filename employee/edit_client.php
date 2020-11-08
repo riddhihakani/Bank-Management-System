@@ -25,7 +25,7 @@ include('./../admin/includes/function.php');
 ?>
 
 <?php showmsg(); ?>    
-<div class="jumbotron mt-3">
+<div class="jumbotron mt-3 shadow-lg p-3 mb-5 bg-white rounded">
     <?php  if($row) : ?>
     <h2><?php echo $row['fname'] . ' ' . $row['lname'] ?></h2>     
     <hr>
@@ -57,11 +57,11 @@ include('./../admin/includes/function.php');
                   <label class="control-label" for="name">Last Name:</label>
                   <input type="text" name="lname" class="form-control" id="lname" value="<?php echo $row['lname'] ?>" required>
               </div>
-              <div class="form-group ">
+              <div class="form-group col-md-6">
                 <label class="control-label" for="address">Address:</label>
-                <fieldset disabled> 
-                  <input type="text" name="address" class="form-control disabled" id="add" value="<?php echo $row['address'] ?>" required>
-                </fieldset> 
+              
+                  <input type="text" name="address" class="form-control" id="add" value="<?php echo $row['address'] ?>" required>
+               
               </div>
           </div>
           <div class="form-row"> 
@@ -105,7 +105,7 @@ if(isset($_POST['update_customer'])){
   $c_lname             =   sanitize($raw_lname);
   $c_dob               =   sanitize($raw_dob);
   $c_email             =   valemail($raw_email);
-  $c_address           =   valemail($raw_address);
+  $c_address           =   sanitize($raw_address);
   
   
   $db->query('UPDATE customer SET fname=:fname, lname=:lname, mname=:mname, dob=:dob, address=:address, email=:email WHERE emp_id=:id');

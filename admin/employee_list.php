@@ -21,7 +21,7 @@ $results = $db->fetchMultiple();
 
 <?php showmsg(); ?>
 <div class="container mt-3">
-<div class="jumbotron">
+<div class="jumbotron shadow-lg p-3 mb-5 bg-white rounded">
  <h2 class="text-center">Employee List</h2> <hr>
  <br>
   <table class="table table-bordered table-hover text-center">

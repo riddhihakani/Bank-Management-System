@@ -10,7 +10,7 @@ class Pdocon{
         private $host       = "localhost";
         private $user       = "root";
         private $pass       = "";
-        private $dbnm       = "bms";
+        private $dbnm       = "bankmanagementsystem";
 //   
 
     //Handle our connection

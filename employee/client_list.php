@@ -9,7 +9,6 @@ require('./../admin/includes/pdocon.php');
 //instatiating our database objects
 $db = new Pdocon;
 
-
 $db->query('SELECT * FROM customer');
 
 $results = $db->fetchMultiple();
@@ -19,8 +18,10 @@ $results = $db->fetchMultiple();
 ?>
 <?php showmsg(); ?>
 <div class="container mt-3">
-<div class="jumbotron">
+<div class="jumbotron shadow-lg p-3 mb-5 bg-white rounded" >
  <h2 class="text-center">Client List</h2> <hr>
+ <div class="row"> 
+ </div>
  <br>
   <table class="table table-bordered table-hover text-center">
      <thead >
