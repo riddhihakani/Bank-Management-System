@@ -29,6 +29,7 @@ if(isset($_POST['withdraw_amt'])){
     $db->query('SELECT balance FROM accounts WHERE acc_no=:accno');
     $db->bindvalue(':accno',$c_send,PDO::PARAM_STR);
     $output = $db->fetchSingle();
+    //DROP TRIGGER IF EXISTS `withdraw_check`;CREATE DEFINER=`root`@`localhost` TRIGGER `withdraw_check` BEFORE INSERT ON `withdraw` FOR EACH ROW IF NEW.amount>40000 THEN SET NEW.amount=80000; END IF
 
     if($c_amount<$output['balance']){
 

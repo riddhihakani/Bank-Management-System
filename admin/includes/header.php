@@ -33,7 +33,7 @@
     <!-- Bootstrap CSS -->
     <script src="https://kit.fontawesome.com/320685ab56.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-    <title>Greater Bank - Branch Manager Portal</title>
+    <title>Greater Bank - Admin Portal</title>
     <link rel="stylesheet" href="css/nav.css">
    <script src="js/nav.js"></script>
   </head>
@@ -53,7 +53,7 @@
       <div id="main">
         <nav class="navbar navbar-expand-lg">
             <span onclick="openNav()" id="menu"><i class="fas fa-ellipsis-v fa-2x"></i></span>
-            <a class="navbar-brand ml-3" href="#">Greater Bank | Employee Portal</a>
+            <a class="navbar-brand ml-3" href="#">Greater Bank | Admin Portal</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>

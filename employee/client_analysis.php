@@ -24,7 +24,7 @@ else{
     <h1>CLIENT ANALYSIS</h1>
     <hr>
     <div class="row">
-            <div class="col-md-1 mt-2">
+            <div class="col-md-3 mt-2">
                 <h6>Customer ID</h6>
             </div>
             <div class="col-md-3 mt-2">
@@ -41,7 +41,7 @@ else{
     <div class="row justify-content-center mt-3">
         <?php foreach($results as $result): ?>
           
-            <div class="col-md-1 mt-2">
+            <div class="col-md-3 mt-2">
                 <h6><?php echo $result['cust_id'] ?></h6>
             </div>
             <div class="col-md-3 mt-2">

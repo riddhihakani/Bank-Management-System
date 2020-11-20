@@ -6,7 +6,7 @@ include('includes/function.php');
 
 $db = new Pdocon;
 // $id = $_SESSION['user_data']['admin_id'];
-$db->query('SELECT * FROM employee WHERE emp_id in(SELECT employee_id FROM account)');
+$db->query('SELECT * FROM employee WHERE emp_id in(SELECT employee_id FROM accounts)');
 
 $results = $db->fetchMultiple();
 if($results){
@@ -69,7 +69,7 @@ if($results){
 
 $db = new Pdocon;
 // $id = $_SESSION['user_data']['admin_id'];
-$db->query('SELECT * FROM employee WHERE emp_id not in(SELECT employee_id FROM account)');
+$db->query('SELECT * FROM employee WHERE emp_id not in(SELECT employee_id FROM accounts)');
 
 $results = $db->fetchMultiple();
 if($results){

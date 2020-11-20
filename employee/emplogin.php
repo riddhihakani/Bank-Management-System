@@ -46,6 +46,7 @@ include('./../admin/includes/pdocon.php');
       'email'         =>   $row['email'],
       'post'          =>   $row['post'],
       'image'         =>   $s_image
+      //'branch_no'     =>   $row['branch_no']
 
       );
       
@@ -109,6 +110,14 @@ include('./../admin/includes/pdocon.php');
                 <button type="submit" class="btn btn-primary" name="submit_login">Submit</button>
                 
         </form>  
+            </div>
+            <div class="col-md-7">
+              <div class="row justify-content-center mt-3">
+                 <h3>We are because of our employees!</h3>
+              </div>
+              <div class="row m-3">
+                <img src="assets/images/employee.jpg" style="width:600px">
+              </div>
             </div>
            
     </div>

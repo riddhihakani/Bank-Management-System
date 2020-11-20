@@ -8,12 +8,23 @@ require('includes/pdocon.php');
 
 //instatiating our database objects
 $db = new Pdocon;
+$bid = $_SESSION['user_data']['branch_no'];
 
+if(isset($_POST['dept_search'])){
 
-$db->query('SELECT * FROM employee');
+  $raw_dept = cleandata($_POST['dept']);
+  $c_dept = sanitize($raw_dept);
+  $db->query('SELECT * FROM employee WHERE branch_no=:bno AND dept=:dept');
+  $db->bindvalue(':bno',$bid,PDO::PARAM_INT);
+  $db->bindvalue(':dept',$c_dept,PDO::PARAM_STR);
+  $results = $db->fetchMultiple();
+
+}else{
+$db->query('SELECT * FROM employee WHERE branch_no=:bno');
+$db->bindvalue(':bno',$bid,PDO::PARAM_STR);
 
 $results = $db->fetchMultiple();
- 
+}
 
 
 ?>
@@ -22,7 +33,25 @@ $results = $db->fetchMultiple();
 <?php showmsg(); ?>
 <div class="container mt-3">
 <div class="jumbotron shadow-lg p-3 mb-5 bg-white rounded">
- <h2 class="text-center">Employee List</h2> <hr>
+<div class="row">
+  <div class="col-md-9">
+    <h2>Employee list</h2>
+  </div>
+  <div class="col-md-3">
+    <form class="form-inline" method="post" action="employee_list.php">
+    <select class="form-control form-control-sm" name="dept">
+        <option>Select a department</option>
+        <option value="Loan">Loan</option>
+        <option value="Accounts">Accounts</option>
+        <option value="Insurance">Insurance</option>
+    </select>
+      <button class="btn btn-sm btn-outline-primary my-2 my-sm-0" type="submit" name="dept_search">Search</button>
+    </form>
+ 
+    </div>
+</div>
+<hr>
+
  <br>
   <table class="table table-bordered table-hover text-center">
      <thead >

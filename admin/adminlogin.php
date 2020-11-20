@@ -47,7 +47,8 @@ include('includes/function.php');
       'fullname'      =>   $row['fullname'],
       'id'            =>   $row['admin_id'],
       'email'         =>   $row['email'],
-      'image'         =>   $s_image
+      'image'         =>   $s_image,
+      'branch_no'     =>   $row['br_no']
 
       );
       

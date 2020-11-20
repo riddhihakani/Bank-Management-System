@@ -43,16 +43,16 @@ include('./includes/header.php');
             <div class="col-md-5">
               <h4>Calculators</h4>
               <div class="card mb-3" style="max-width: 540px;border: 0.5px solid darkgray">
-                <div class="row m-2" style="border: 1px solid darkgray;"  id="calc">
+                <div class="row m-2" style="border: 1px solid darkgray; background-image:url('assets/images/calc.png'); background-position:bottom" >
                   <h3 class="mt-4 ml-2">Personal Loan EMI Calculator</h3>
                 </div>
-                <div class="row m-2" style="border: 1px solid darkgray;"  id="calc">
+                <div class="row m-2" style="border: 1px solid darkgray; background-image:url('assets/images/calci.png'); background-position:bottom"  >
                   <h3 class="mt-4 ml-2">SIP Calculator</h3>
                 </div>
-                <div class="row m-2" style="border: 1px solid darkgray;"  id="calc">
+                <div class="row m-2" style="border: 1px solid darkgray;background-image:url('assets/images/cal.jpg'); background-position:bottom"  >
                   <h3 class="mt-4 ml-2">RD Calculator</h3>
                 </div>
-                <div class="row m-2" style="border: 1px solid darkgray;"  id="calc">
+                <div class="row m-2" style="border: 1px solid darkgray;background-image:url('assets/images/calcie.jpg'); background-position:bottom"  >
                   <h3 class="mt-4 ml-2">SME Calculators</h3>
                 </div>
               </div>
@@ -86,10 +86,23 @@ include('./includes/header.php');
     <!--ROW2-->
     <div class="row mt-3 justify-content-center">
       <div class="col-md-7 mr-4" style="background-color: white; border: 0.5px solid darkgray">
+      <div class="row">
+      <div class="col-md-6">
+         <img src="assets/images/awards.jpg" class="m-3" style="height: 300px; width:400px" >
+        
 
       </div>
+      <div class="col-md-6">
+         
+         <h3 class="m-2" style="font-family: 'Signika', sans-serif;">We have been awarded as one of 'THE BEST BANKS TO WORK WITH' in 2019 !</h3>
+         <p>Nunc lobortis enim justo, at rhoncus ex elementum lacinia. Vivamus eu tellus id quam accumsan viverra. Donec ac iaculis quam, consequat tristique risus. Curabitur tincidunt tortor lectus, eu fringilla turpis volutpat sit amet. Fusce consequat consequat leo, in accumsan purus. </p>
+         <h3 class="m-2" style="font-family: 'Signika', sans-serif; color:rgb(26, 4, 105)">YOU MAKE US WHAT WE ARE!</h3>
+        </div>
+      </div>
+      </div>
       <div class="col-md-3 ml-4" style="background-color: white; border: 0.5px solid darkgray">
-          <h4 class="mb-5 mt-2 justify-content-center">Need Help? | Contact Us</h4>
+          <h4 class="mb-2 mt-2 justify-content-center">Need Help? | Contact Us</h4>
+          <a href=""><marquee>Terms and Conditions apply.Policies are changeable.</marquee></a>
           <hr>
           <h5>Loan Restructuring FAQs</h5>
           <hr>
@@ -109,7 +122,7 @@ include('./includes/header.php');
     <div class="card h-100">
       <img src="assets/images/eduloan.png" class="card-img-top" alt="..." style="height: 310px;">
       <div class="card-body">
-        <h5 class="card-title">Card title</h5>
+        <h5 class="card-title">EDUCATION LOANS</h5>
         <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
       </div>
     </div>
@@ -118,8 +131,8 @@ include('./includes/header.php');
     <div class="card h-100">
       <img src="assets/images/home.jpg" class="card-img-top" alt="..." style="height: 310px;">
       <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">This is a short card.</p>
+        <h5 class="card-title">HOME LOANS</h5>
+        <p class="card-text">Nullam at aliquam nisl, sed accumsan velit. Ut tempor, tortor eu cursus convallis.</p>
       </div>
     </div>
   </div>
@@ -127,7 +140,7 @@ include('./includes/header.php');
     <div class="card h-100">
       <img src="assets/images/business.png" class="card-img-top" alt="..." style="height: 310px;">
       <div class="card-body">
-        <h5 class="card-title">Card title</h5>
+        <h5 class="card-title">BUSINESS LOAN</h5>
         <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content.</p>
       </div>
     </div>

@@ -195,7 +195,7 @@ if(isset($_POST['submit_register'])){
             </div>
         </div> -->
         <button type="submit" class="btn btn-primary" name="submit_register">Register Employee</button>
-        <button type="submit" class="btn btn-primary" name="initiate_lock">Register Employee</button>
+       
         </form>
     </div>
 </div>

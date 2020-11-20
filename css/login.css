@@ -3,8 +3,9 @@ body{
 }
 
 #loginrow{
-    background-image: url('./../assets/images/diwali.jpg');
+    /* background-image: url('./assets/images/diwali.jpg'); */
     height: 100%;
+    
 }
 
 #form{

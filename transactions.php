@@ -39,9 +39,9 @@ if(isset($_POST['transfer_amt'])){
     $row = $db->execute();
 
     if($row){
-        echo 'transfer successful';
+        //echo 'transfer successful';
     }else{
-        echo 'Transfer unsuccessful';
+        //echo 'Transfer unsuccessful';
     }
 
     $db->query('UPDATE accounts SET balance=balance-:amount WHERE acc_no=:send');
@@ -50,9 +50,9 @@ if(isset($_POST['transfer_amt'])){
     $row = $db->execute();
 
     if($row){
-        echo 'transfer successful';
+        //echo 'transfer successful';
     }else{
-        echo 'Transfer unsuccessful';
+        //echo 'Transfer unsuccessful';
     }
    
     $db->query('INSERT INTO transactions (trans_id,cust_id,sender_acc,receiver_acc,amount,date_trans) VALUES (NULL,:cust,:sender,:receiver,:amt,:datet)');
@@ -62,10 +62,25 @@ if(isset($_POST['transfer_amt'])){
     $db->bindvalue(':amt',$c_amount,PDO::PARAM_INT);
     $db->bindvalue(':datet',date("Y-m-d"),PDO::PARAM_STR);
     $row = $db->execute();
+
+    if($row){
+        echo '<div class="alert alert-success text-center">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>Hurrah.</strong> Transfer Successful!
+      </div>';
+    }else{
+        echo '<div class="alert alert-danger text-center">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>Sorry!</strong> Something went wrong.
+      </div>';
+    }
     
     }else{
 
-        echo 'You do not have enough balance in your account';
+        echo '<div class="alert alert-danger text-center">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>oops!</strong>You do not have enough balance in your account.
+      </div>';
 
 
 }
@@ -80,7 +95,7 @@ if(isset($_POST['transfer_amt'])){
 <div class="container ">
     <div class="row justify-content-center shadow-lg p-3 mb-5 bg-white rounded mt-5" style="border: 2px solid black;">
     <div class="col-md-7">
-
+        <img src="assets/images/moneytransfer.jpg" style="width: 550px; height: 400px">
     </div>
     <div class="col-md-5">
     <form method="post" action="transactions.php"class="mt-3 mb-2">
@@ -103,6 +118,8 @@ if(isset($_POST['transfer_amt'])){
             </div> -->
        
         <button type="submit" class="btn btn-primary" name="transfer_amt">Transfer Amount</button>
+        <h3 class="mt-3">Money Transfer Made Easy</h3>
+        <h3>with GREATER BANK!</h3>
         </form>
     
     </div>

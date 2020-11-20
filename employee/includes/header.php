@@ -6,6 +6,7 @@ if(isset($_SESSION['user_is_logged_in'])){
   
   $empid  = $_SESSION['user_data']['id'];
   $post = $_SESSION['user_data']['post'];
+ // $branch_no = $_SESSION['user_data']['branch_no'];
     
 }else{
     

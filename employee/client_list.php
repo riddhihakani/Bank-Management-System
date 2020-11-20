@@ -9,7 +9,11 @@ require('./../admin/includes/pdocon.php');
 //instatiating our database objects
 $db = new Pdocon;
 
+//$br_no = $_SESSION['user_data']['branch_no'];
+
 $db->query('SELECT * FROM customer');
+//$db->bindvalue(':bno',$br_no,PDO::PARAM_STR);
+
 
 $results = $db->fetchMultiple();
  

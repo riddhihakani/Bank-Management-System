@@ -86,9 +86,10 @@ include('./admin/includes/pdocon.php');
     <title>Login to your greater bank account</title>
   </head>
   <body>
-    <div class="row" id="loginrow">
-      <div class="col-md-7">
-
+    <div class="row" id="loginrow" style="background-image: url('assets/images/diwali.jpg'); background-position: center">
+      <div class="col-md-7 mt-5">
+          <!-- <h2>Greater Bank</h2>
+            <h3>wishes you a</h3> -->
       </div>
       <div class="col-md-4 m-4" id="form">
         <form class="m-3" action="" method="post">
@@ -107,6 +108,8 @@ include('./admin/includes/pdocon.php');
           </div> -->
           <button type="submit" class="btn btn-primary" name="submit_login">Login</button>
           <!-- <p class="mt-4">Don't have an account? <a href="">Sign Up</a></p> -->
+          <p>New to Greater Bank? Contact your nearest branch</p>
+          <p> to open your account. <a href="">Fore more details click here</a></p>
         </form>   
       </div>
     </div>

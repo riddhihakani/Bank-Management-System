@@ -2,16 +2,10 @@
 
 class Pdocon{
     
-
-    // The connection Properties
-    
-    
-    //Localhost Db information
         private $host       = "localhost";
         private $user       = "root";
         private $pass       = "";
         private $dbnm       = "bankmanagementsystem";
-//   
 
     //Handle our connection
         private $dbh;
@@ -21,7 +15,6 @@ class Pdocon{
     
     //Statement Handler
         private $stmt;
- 
         
     //Method to open our connection
 
@@ -55,8 +48,6 @@ class Pdocon{
             
         }
             
-
-        
         //Write query helper function using the stmt property
         public function query($query){
             
@@ -78,8 +69,7 @@ class Pdocon{
             
           return $this->stmt->execute();
             
-        }
-        
+        }   
 
         //Function to check if statement was successfully executed
         public function confirm_result(){
@@ -106,12 +96,7 @@ class Pdocon{
         return $this->stmt->fetch(PDO::FETCH_ASSOC);    
             
         }
-        
-    
+            
 }    
-
-
-
-
 
 ?>

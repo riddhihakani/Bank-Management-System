@@ -16,7 +16,7 @@ if(isset($_POST['submit_register'])){
     $raw_gender         =   cleandata($_POST['gender']);
     $raw_email          =   cleandata($_POST['email']);
     $raw_dob            =   cleandata($_POST['dob']);
-    // $raw_age            =   cleandata($_POST['age']);
+    $raw_branch         =   cleandata($_POST['branch']);
     $raw_password       =   cleandata($_POST['password']);
     $raw_address        =   cleandata($_POST['address']);
     $raw_id             =   cleandata($_POST['id']);
@@ -27,7 +27,7 @@ if(isset($_POST['submit_register'])){
     $c_gender            =   sanitize($raw_gender);
     $c_email             =   valemail($raw_email);
     $c_dob               =   sanitize($raw_dob);
-    // $c_age               =   sanitize($raw_age);
+    $c_bno               =   sanitize($raw_bno);
     $c_password          =   sanitize($raw_password);
     $c_address           =   sanitize($raw_address);
     $c_id                =   sanitize($raw_id);
@@ -60,7 +60,7 @@ if(isset($_POST['submit_register'])){
         
     }else{
         
-        $db->query("INSERT INTO customer(customer_id, fname, mname, lname, email, dob, age, password, gender, address, image) VALUES(:id, :fname, :mname, :lname, :email, :dob, :age, :password, :gender, :address, :image) ");
+        $db->query("INSERT INTO customer(customer_id, fname, mname, lname, email, dob, age, password, gender, address, image, branch_no) VALUES(:id, :fname, :mname, :lname, :email, :dob, :age, :password, :gender, :address, :image, :bno) ");
         
         $db->bindvalue(':id', $c_id, PDO::PARAM_INT);
         $db->bindvalue(':fname', $c_fname, PDO::PARAM_STR);
@@ -73,6 +73,7 @@ if(isset($_POST['submit_register'])){
         $db->bindvalue(':password', $hashed_Pass, PDO::PARAM_STR);
         $db->bindvalue(':gender', $c_gender, PDO::PARAM_STR);
         $db->bindvalue(':image', $c_img, PDO::PARAM_STR);
+        $db->bindvalue(':bno', $c_bno, PDO::PARAM_INT);
     
         
         $run = $db->execute();
@@ -130,6 +131,18 @@ if(isset($_POST['submit_register'])){
         <div class="form-group">
             <input type="text" class="form-control" id="inputAddress" name="address" placeholder="Address">
         </div>
+        <div class="form-group">
+                <select id="branch" name="branch" class="form-control">
+                    <option selected>Choose branch</option>
+                    <?php 
+                        $db->query('SELECT * FROM branch');
+                        $results = $db->fetchMultiple();
+                    ?>
+                    <?php foreach($results as $result): ?>
+                    <option value="<?php echo $result['Branch_id'] ?>"><?php echo $result['Address']?></option>
+                    <?php endforeach ; ?>
+                </select>
+            </div>
         <div class="form-row">
             <div class="form-group col-md-4">           
                 <input type="date" class="form-control" id="phone" name="dob" placeholder="Date of Birth">
